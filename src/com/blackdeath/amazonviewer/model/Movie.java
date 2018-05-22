@@ -24,8 +24,8 @@ public class Movie extends Film {
 
 	@Override
 	public String toString() {
-		return "\n Title: " + getTitle() + "\n Genre: " + getGenre() + "\n Year: " + getYear() + "\n Creator: "
-				+ getCreator() + "\n Duration: " + getDuration();
+		return "\n :: MOVIE ::" + "\n Title: " + getTitle() + "\n Genre: " + getGenre() + "\n Year: " + getYear()
+				+ "\n Creator: " + getCreator() + "\n Duration: " + getDuration();
 	}
 
 }

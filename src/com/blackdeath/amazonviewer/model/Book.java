@@ -34,4 +34,16 @@ public class Book extends Publication {
 		this.timeReaded = timeReaded;
 	}
 
+	@Override
+	public String toString() {
+		String bookDetail = "\n :: BOOK ::" + "\n Title: " + getTitle() + "\n Editition Date: " + getEdititionDate()
+				+ "\n Editorial: " + getEditorial() + "\n ISBN: " + getIsbn() + "\n Authors: ";
+
+		for (int i = 0; i < getAuthors().length; i++) {
+			bookDetail += "\t" + getAuthors()[i];
+		}
+
+		return bookDetail;
+	}
+
 }
