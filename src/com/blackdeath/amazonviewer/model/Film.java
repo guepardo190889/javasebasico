@@ -60,8 +60,8 @@ public class Film {
 		this.year = year;
 	}
 
-	public boolean isViewed() {
-		return viewed;
+	public String isViewed() {
+		return viewed ? "Sí" : "No";
 	}
 
 	public void setViewed(boolean viewed) {

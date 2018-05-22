@@ -1,18 +1,15 @@
 package com.blackdeath.amazonviewer;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 
 import com.blackdeath.amazonviewer.model.Movie;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Movie movie = new Movie("Coco", "Animation", "Lee Unkrich", 120, (short) 2017);
-		movie.setTitle("Rambo");
-		// movie.showData();
-		System.out.println(movie);
-
-		// showMenu();
+		showMenu();
 
 	}
 
@@ -22,7 +19,7 @@ public class Main {
 
 			System.out.println("BIENVENIDOS AMAZON VIEWER");
 			System.out.println("");
-			System.out.println("Selecciona el nÃºmero de la opciÃ³n deseada");
+			System.out.println("Selecciona el número de la opción deseada");
 			System.out.println("1. Movies");
 			System.out.println("2. Series");
 			System.out.println("3. Books");
@@ -32,7 +29,9 @@ public class Main {
 			System.out.println("0. Exit");
 
 			// Leer la respuesta del usuario
-			int response = 1;
+			Scanner sc = new Scanner(System.in);
+			int response = sc.nextInt();
+			// TODO Validar que response sea un número
 			switch (response) {
 			case 0:
 				// salir
@@ -59,7 +58,7 @@ public class Main {
 
 			default:
 				System.out.println();
-				System.out.println("....Â¡Â¡Selecciona una opciÃ³n!!....");
+				System.out.println("....¡¡¡Selecciona una opción!!!....");
 				System.out.println();
 				break;
 			}
@@ -68,11 +67,44 @@ public class Main {
 	}
 
 	public static void showMovies() {
-		int exit = 0;
+		int exit = 1;
+		ArrayList<Movie> movies = Movie.makeMoviesList();
+
 		do {
 			System.out.println();
 			System.out.println(":: MOVIES ::");
 			System.out.println();
+
+			for (int i = 0; i < movies.size(); i++) {
+				System.out
+						.println((i + 1) + ". " + movies.get(i).getTitle() + " - Viewed: " + movies.get(i).isViewed());
+			}
+
+			System.out.println("0. Regresar al Menú");
+			System.out.println();
+
+			Scanner sc = new Scanner(System.in);
+			int respuesta = sc.nextInt();
+
+			if(0 == respuesta) {
+				showMenu();
+			}
+			
+			Movie movieSelected = movies.get(respuesta - 1);
+			movieSelected.setViewed(true);
+			Date dateI = movieSelected.startToSee(new Date());
+
+			for (int i = 0; i < 1000000; i++) {
+				System.out.println("..........");
+
+			}
+
+			movieSelected.stopToSee(dateI, new Date());
+
+			System.out.println();
+			System.out.println("Viste: " + movieSelected);
+			System.out.println("Por: " + movieSelected.getTimeViewed() + " milisegundos");
+
 		} while (exit != 0);
 
 	}
