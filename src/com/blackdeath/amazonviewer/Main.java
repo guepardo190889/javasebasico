@@ -7,9 +7,12 @@ import com.blackdeath.amazonviewer.model.Movie;
 public class Main {
 
 	public static void main(String[] args) {
-		Movie movie = new Movie("Coco", "Animation", (short) 2017);
-		movie.showData();
-		//showMenu();
+		Movie movie = new Movie("Coco", "Animation", "Lee Unkrich", 120, (short) 2017);
+		movie.setTitle("Rambo");
+		// movie.showData();
+		System.out.println(movie);
+
+		// showMenu();
 
 	}
 
