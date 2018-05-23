@@ -64,8 +64,18 @@ public class Film {
 		return viewed ? "Sí" : "No";
 	}
 
+	public boolean getIsViewed() {
+		return viewed;
+	}
+
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;
+	}
+
+	public void play() {
+		for (int i = 0; i < 100_000; i++) {
+			System.out.println("........................................");
+		}
 	}
 
 }

@@ -45,4 +45,10 @@ public class Publication {
 		this.authors = authors;
 	}
 
+	public void read() {
+		for (int i = 0; i < 100_000; i++) {
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+		}
+	}
+
 }

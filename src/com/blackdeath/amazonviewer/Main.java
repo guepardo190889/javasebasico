@@ -1,5 +1,6 @@
 package com.blackdeath.amazonviewer;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -8,8 +9,14 @@ import com.blackdeath.amazonviewer.model.Book;
 import com.blackdeath.amazonviewer.model.Chapter;
 import com.blackdeath.amazonviewer.model.Movie;
 import com.blackdeath.amazonviewer.model.Serie;
+import com.blackdeath.makereport.Report;
 
 public class Main {
+
+	private static Scanner sc = new Scanner(System.in);
+	private static ArrayList<Movie> movies = Movie.makeMoviesList();
+	private static ArrayList<Serie> series = Serie.makeSeriesList();
+	private static ArrayList<Book> books = Book.makeBooksList();
 
 	public static void main(String[] args) {
 		showMenu();
@@ -19,7 +26,6 @@ public class Main {
 	public static void showMenu() {
 		int exit = 0;
 		do {
-
 			System.out.println("BIENVENIDOS AMAZON VIEWER");
 			System.out.println("");
 			System.out.println("Selecciona el número de la opción deseada");
@@ -32,9 +38,8 @@ public class Main {
 			System.out.println("0. Exit");
 
 			// Leer la respuesta del usuario
-			Scanner sc = new Scanner(System.in);
-			int response = sc.nextInt();
-			// TODO Validar que response sea un número
+			int response = leeRespuesta();
+
 			switch (response) {
 			case 0:
 				// salir
@@ -71,7 +76,6 @@ public class Main {
 
 	public static void showMovies() {
 		int exit = 1;
-		ArrayList<Movie> movies = Movie.makeMoviesList();
 
 		do {
 			System.out.println();
@@ -86,32 +90,27 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			Scanner sc = new Scanner(System.in);
-			int respuesta = sc.nextInt();
+			int respuesta = leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
+			} else if (respuesta > 0) {
+				Movie movieSelected = movies.get(respuesta - 1);
+				movieSelected.setViewed(true);
+
+				Date dateI = movieSelected.startToSee(new Date());
+				movieSelected.play();
+				movieSelected.stopToSee(dateI, new Date());
+
+				System.out.println();
+				System.out.println("Viste: " + movieSelected);
+				System.out.println("Por: " + movieSelected.getTimeViewed() + " milisegundos");
 			}
-
-			Movie movieSelected = movies.get(respuesta - 1);
-			movieSelected.setViewed(true);
-			Date dateI = movieSelected.startToSee(new Date());
-
-			for (int i = 0; i < 1000000; i++) {
-				System.out.println("..........");
-			}
-
-			movieSelected.stopToSee(dateI, new Date());
-
-			System.out.println();
-			System.out.println("Viste: " + movieSelected);
-			System.out.println("Por: " + movieSelected.getTimeViewed() + " milisegundos");
 		} while (exit != 0);
 	}
 
 	public static void showSeries() {
 		int exit = 1;
-		ArrayList<Serie> series = Serie.makeSeriesList();
 
 		do {
 			System.out.println();
@@ -126,16 +125,15 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			Scanner sc = new Scanner(System.in);
-			int respuesta = sc.nextInt();
+			int respuesta = leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
+			} else if (respuesta > 0) {
+				Serie serieSelected = series.get(respuesta - 1);
+
+				showChapters(serieSelected.getChapters());
 			}
-
-			Serie serieSelected = series.get(respuesta - 1);
-
-			showChapters(serieSelected.getChapters());
 		} while (exit != 0);
 	}
 
@@ -154,32 +152,26 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			Scanner sc = new Scanner(System.in);
-			int respuesta = sc.nextInt();
+			int respuesta = leeRespuesta();
 
 			if (0 == respuesta) {
 				showSeries();
+			} else if (respuesta > 0) {
+				Chapter chapterSelected = chapters.get(respuesta - 1);
+				chapterSelected.setViewed(true);
+				Date dateI = chapterSelected.startToSee(new Date());
+				chapterSelected.play();
+				chapterSelected.stopToSee(dateI, new Date());
+
+				System.out.println();
+				System.out.println("Viste: " + chapterSelected);
+				System.out.println("Por: " + chapterSelected.getTimeViewed() + " milisegundos");
 			}
-
-			Chapter chapterSelected = chapters.get(respuesta - 1);
-			chapterSelected.setViewed(true);
-			Date dateI = chapterSelected.startToSee(new Date());
-
-			for (int i = 0; i < 1000000; i++) {
-				System.out.println("..........");
-			}
-
-			chapterSelected.stopToSee(dateI, new Date());
-
-			System.out.println();
-			System.out.println("Viste: " + chapterSelected);
-			System.out.println("Por: " + chapterSelected.getTimeViewed() + " milisegundos");
 		} while (exit != 0);
 	}
 
 	public static void showBooks() {
 		int exit = 1;
-		ArrayList<Book> books = Book.makeBooksList();
 
 		do {
 			System.out.println();
@@ -193,27 +185,21 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			Scanner sc = new Scanner(System.in);
-			int respuesta = sc.nextInt();
+			int respuesta = leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
+			} else if (respuesta > 0) {
+				Book bookSelected = books.get(respuesta - 1);
+				bookSelected.setReaded(true);
+				Date dateI = bookSelected.startToSee(new Date());
+				bookSelected.read();
+				bookSelected.stopToSee(dateI, new Date());
+
+				System.out.println();
+				System.out.println("Leíste: " + bookSelected);
+				System.out.println("Por: " + bookSelected.getTimeReaded() + " milisegundos");
 			}
-
-			Book bookSelected = books.get(respuesta - 1);
-			bookSelected.setReaded(true);
-			Date dateI = bookSelected.startToSee(new Date());
-
-			for (int i = 0; i < 1000000; i++) {
-				System.out.println("..........");
-			}
-
-			bookSelected.stopToSee(dateI, new Date());
-
-			System.out.println();
-			System.out.println("Leíste: " + bookSelected);
-			System.out.println("Por: " + bookSelected.getTimeReaded() + " milisegundos");
-
 		} while (exit != 0);
 	}
 
@@ -227,17 +213,47 @@ public class Main {
 	}
 
 	public static void makeReport() {
+		Report report = new Report();
+		report.setNameFile("reporte");
+		report.setTitle(":: VISTOS ::");
+		report.setExtension("txt");
 
+		String content = "";
+
+		for (Movie movie : movies) {
+			if (movie.getIsViewed()) {
+				content += movie.toString() + "\n";
+			}
+		}
+
+		report.setContent(content);
+
+		report.makeReport();
 	}
 
 	public static void makeReport(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
+		Report report = new Report();
+		report.setNameFile("reporte" + sdf.format(date));
+		report.setTitle(":: VISTOS ::");
+		report.setExtension("txt");
+
+		String content = "";
+
+		for (Movie movie : movies) {
+			if (movie.getIsViewed()) {
+				content += movie.toString() + "\n";
+			}
+		}
+
+		report.setContent(content);
+
+		report.makeReport();
 	}
 
-	public static int leeRespuesta(String repuesta) {
+	public static int leeRespuesta() {
 		int respuesta = -1;
-
-		Scanner sc = new Scanner(System.in);
 
 		String respuestaStr = sc.nextLine();
 
