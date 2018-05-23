@@ -35,7 +35,7 @@ public class Chapter extends Movie {
 		ArrayList<Chapter> chapters = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-			chapters.add(new Chapter("Chapter" + 1, "Ciencia Ficción", "Creator" + i, (45 + i), (short) 2004, 1));
+			chapters.add(new Chapter("Chapter" + i, "Ciencia Ficción", "Creator" + i, (45 + i), (short) 2004, 1));
 		}
 
 		return chapters;
@@ -45,7 +45,7 @@ public class Chapter extends Movie {
 		ArrayList<Chapter> chapters = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {
-			chapters.add(new Chapter("Chapter" + 1, "Ciencia Ficción", "Creator" + i, (45 + i), (short) 2004, 1));
+			chapters.add(new Chapter("Chapter" + i, "Ciencia Ficción", "Creator" + i, (45 + i), (short) 2004, 1));
 		}
 
 		return chapters;
