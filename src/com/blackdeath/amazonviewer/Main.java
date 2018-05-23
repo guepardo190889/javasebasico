@@ -25,7 +25,7 @@ public class Main {
 	}
 
 	public static void showMenu() {
-		int exit = 0;
+		int exit = 1;
 		do {
 			System.out.println("BIENVENIDOS AMAZON VIEWER");
 			System.out.println("");
