@@ -73,7 +73,7 @@ public class Book extends Publication implements IVisualizable {
 		ArrayList<Book> books = new ArrayList<>();
 		books.add(new Book("Scrum. El arte de hacer el doble de trabajo en la mitad de tiempo", "Gandhi",
 				new String[] { "Jeff Sutherland" }));
-		books.add(new Book("Pequeño cerdo capitalista", "Gandhi", new String[] { "Sofía Macías" }));
+		books.add(new Book("PequeÃ±o cerdo capitalista", "Gandhi", new String[] { "SofÃ­a MacÃ­as" }));
 		books.add(new Book("Padre rico padre pobre", "Gandhi", new String[] { "Robert T. Kiyosaki" }));
 
 		return books;

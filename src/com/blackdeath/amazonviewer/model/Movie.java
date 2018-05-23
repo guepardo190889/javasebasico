@@ -47,20 +47,20 @@ public class Movie extends Film implements IVisualizable {
 
 	public static ArrayList<Movie> makeMoviesList() {
 		ArrayList<Movie> movies = new ArrayList<>();
-		movies.add(new Movie("El juego de Ender", "Ciencia Ficci髇", "Gavin Hood", 114, (short) 2013));
-		movies.add(new Movie("Titanes del Pac韋ico", "Ciencia Ficci髇", "Guillermo del Toro", 132, (short) 2013));
-		movies.add(new Movie("Interestelar ", "Ciencia Ficci髇", "Christopher Nolan", 169, (short) 2014));
-		movies.add(new Movie("Contacto", "Ciencia Ficci髇", "Robert Zemeckis", 149, (short) 1997));
-		movies.add(new Movie("Coherence", "Ciencia Ficci髇, Suspenso", "James Ward Byrkit", 89, (short) 2013));
-		movies.add(new Movie("El Origen", "Drama, Suspenso, Acci髇", "Christopher Nolan", 148, (short) 2010));
-		movies.add(new Movie("Wall-E", "Ciencia Ficci髇", "Andrew Stanton", 98, (short) 2008));
-		movies.add(new Movie("Matrix", "Ciencia Ficci髇", "Hermanos Wachowski", 136, (short) 1999));
-		movies.add(new Movie("Avatar", "Ciencia Ficci髇", "James Cameron", 162, (short) 2009));
-		movies.add(new Movie("A.I. Inteligencia Artificial", "Ciencia Ficci髇", "Steven Spielberg", 146, (short) 2001));
-		movies.add(new Movie("Prometheus", "Ciencia Ficci髇", "Ridley Scott", 124, (short) 2012));
-		movies.add(new Movie("Minority Report", "Ciencia Ficci髇", "Steven Spielberg", 145, (short) 2002));
-		movies.add(new Movie("El quinto elemento", "Ciencia Ficci髇", "Luc Besson", 127, (short) 1997));
-		movies.add(new Movie("Yo, robot ", "Ciencia Ficci髇", "Alex Proyas", 115, (short) 2004));
+		movies.add(new Movie("El juego de Ender", "Ciencia Ficci贸n", "Gavin Hood", 114, (short) 2013));
+		movies.add(new Movie("Titanes del Pac铆fico", "Ciencia Ficci贸n", "Guillermo del Toro", 132, (short) 2013));
+		movies.add(new Movie("Interestelar ", "Ciencia Ficci贸n", "Christopher Nolan", 169, (short) 2014));
+		movies.add(new Movie("Contacto", "Ciencia Ficci贸n", "Robert Zemeckis", 149, (short) 1997));
+		movies.add(new Movie("Coherence", "Ciencia Ficci贸n, Suspenso", "James Ward Byrkit", 89, (short) 2013));
+		movies.add(new Movie("El Origen", "Drama, Suspenso, Acci贸n", "Christopher Nolan", 148, (short) 2010));
+		movies.add(new Movie("Wall-E", "Ciencia Ficci贸n", "Andrew Stanton", 98, (short) 2008));
+		movies.add(new Movie("Matrix", "Ciencia Ficci贸n", "Hermanos Wachowski", 136, (short) 1999));
+		movies.add(new Movie("Avatar", "Ciencia Ficci贸n", "James Cameron", 162, (short) 2009));
+		movies.add(new Movie("A.I. Inteligencia Artificial", "Ciencia Ficci贸n", "Steven Spielberg", 146, (short) 2001));
+		movies.add(new Movie("Prometheus", "Ciencia Ficci贸n", "Ridley Scott", 124, (short) 2012));
+		movies.add(new Movie("Minority Report", "Ciencia Ficci贸n", "Steven Spielberg", 145, (short) 2002));
+		movies.add(new Movie("El quinto elemento", "Ciencia Ficci贸n", "Luc Besson", 127, (short) 1997));
+		movies.add(new Movie("Yo, robot ", "Ciencia Ficci贸n", "Alex Proyas", 115, (short) 2004));
 
 		return movies;
 	}

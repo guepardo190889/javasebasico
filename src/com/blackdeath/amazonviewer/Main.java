@@ -3,17 +3,16 @@ package com.blackdeath.amazonviewer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 
 import com.blackdeath.amazonviewer.model.Book;
 import com.blackdeath.amazonviewer.model.Chapter;
 import com.blackdeath.amazonviewer.model.Movie;
 import com.blackdeath.amazonviewer.model.Serie;
+import com.blackdeath.amazonviewer.util.AmazonUtil;
 import com.blackdeath.makereport.Report;
 
 public class Main {
 
-	private static Scanner sc = new Scanner(System.in);
 	private static ArrayList<Movie> movies = Movie.makeMoviesList();
 	private static ArrayList<Serie> series = Serie.makeSeriesList();
 	private static ArrayList<Book> books = Book.makeBooksList();
@@ -28,7 +27,7 @@ public class Main {
 		do {
 			System.out.println("BIENVENIDOS AMAZON VIEWER");
 			System.out.println("");
-			System.out.println("Selecciona el número de la opción deseada");
+			System.out.println("Selecciona el nÃºmero de la opciÃ³n deseada");
 			System.out.println("1. Movies");
 			System.out.println("2. Series");
 			System.out.println("3. Books");
@@ -38,7 +37,7 @@ public class Main {
 			System.out.println("0. Exit");
 
 			// Leer la respuesta del usuario
-			int response = leeRespuesta();
+			int response = AmazonUtil.leeRespuesta();
 
 			switch (response) {
 			case 0:
@@ -66,7 +65,7 @@ public class Main {
 
 			default:
 				System.out.println();
-				System.out.println("....¡¡¡Selecciona una opción!!!....");
+				System.out.println("....Â¡Â¡Â¡Selecciona una opciÃ³n!!!....");
 				System.out.println();
 				break;
 			}
@@ -87,10 +86,10 @@ public class Main {
 						.println((i + 1) + ". " + movies.get(i).getTitle() + " - Viewed: " + movies.get(i).isViewed());
 			}
 
-			System.out.println("0. Regresar al Menú");
+			System.out.println("0. Regresar al MenÃº");
 			System.out.println();
 
-			int respuesta = leeRespuesta();
+			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
@@ -122,10 +121,10 @@ public class Main {
 						.println((i + 1) + ". " + series.get(i).getTitle() + " - Viewed: " + series.get(i).isViewed());
 			}
 
-			System.out.println("0. Regresar al Menú");
+			System.out.println("0. Regresar al MenÃº");
 			System.out.println();
 
-			int respuesta = leeRespuesta();
+			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
@@ -149,10 +148,10 @@ public class Main {
 						(i + 1) + ". " + chapters.get(i).getTitle() + " - Viewed: " + chapters.get(i).isViewed());
 			}
 
-			System.out.println("0. Regresar al Menú");
+			System.out.println("0. Regresar al MenÃº");
 			System.out.println();
 
-			int respuesta = leeRespuesta();
+			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
 				showSeries();
@@ -182,10 +181,10 @@ public class Main {
 				System.out.println((i + 1) + ". " + books.get(i).getTitle() + " - Readed: " + books.get(i).isReaded());
 			}
 
-			System.out.println("0. Regresar al Menú");
+			System.out.println("0. Regresar al MenÃº");
 			System.out.println();
 
-			int respuesta = leeRespuesta();
+			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
 				showMenu();
@@ -197,7 +196,7 @@ public class Main {
 				bookSelected.stopToSee(dateI, new Date());
 
 				System.out.println();
-				System.out.println("Leíste: " + bookSelected);
+				System.out.println("Leï¿½ste: " + bookSelected);
 				System.out.println("Por: " + bookSelected.getTimeReaded() + " milisegundos");
 			}
 		} while (exit != 0);
@@ -250,23 +249,6 @@ public class Main {
 		report.setContent(content);
 
 		report.makeReport();
-	}
-
-	public static int leeRespuesta() {
-		int respuesta = -1;
-
-		String respuestaStr = sc.nextLine();
-
-		if (isRespuestaValida(respuestaStr)) {
-			respuesta = Integer.parseInt(respuestaStr);
-		}
-
-		return respuesta;
-	}
-
-	private static boolean isRespuestaValida(String respuesta) {
-		return "0".equals(respuesta) || "1".equals(respuesta) || "2".equals(respuesta) || "3".equals(respuesta)
-				|| "4".equals(respuesta) || "5".equals(respuesta) || "6".equals(respuesta);
 	}
 
 }
