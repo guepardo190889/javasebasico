@@ -39,7 +39,7 @@ public class Main {
 			System.out.println("0. Exit");
 
 			// Leer la respuesta del usuario
-			int response = AmazonUtil.leeRespuesta();
+			int response = AmazonUtil.validaRespuestaMenu(0, 6);
 
 			switch (response) {
 			case 0:
@@ -91,7 +91,7 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			int respuesta = AmazonUtil.leeRespuesta();
+			int respuesta = AmazonUtil.validaRespuestaMenu(0, movies.size());
 
 			if (0 == respuesta) {
 				exit = 0;
@@ -128,7 +128,7 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			int respuesta = AmazonUtil.leeRespuesta();
+			int respuesta = AmazonUtil.validaRespuestaMenu(0, series.size());
 
 			if (0 == respuesta) {
 				exit = 0;
@@ -156,7 +156,7 @@ public class Main {
 			System.out.println("0. Regresar a Series");
 			System.out.println();
 
-			int respuesta = AmazonUtil.leeRespuesta();
+			int respuesta = AmazonUtil.validaRespuestaMenu(0, chapters.size());
 
 			if (0 == respuesta) {
 				exit = 0;
@@ -191,7 +191,7 @@ public class Main {
 			System.out.println("0. Regresar al Menú");
 			System.out.println();
 
-			int respuesta = AmazonUtil.leeRespuesta();
+			int respuesta = AmazonUtil.validaRespuestaMenu(0, books.size());
 
 			if (0 == respuesta) {
 				exit = 0;
@@ -225,7 +225,7 @@ public class Main {
 			System.out.println("0. Regresar al Menu");
 			System.out.println();
 
-			int respuesta = AmazonUtil.leeRespuesta();
+			int respuesta = AmazonUtil.validaRespuestaMenu(0, magazines.size());
 
 			if (respuesta == 0) {
 				exit = 0;

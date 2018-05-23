@@ -7,22 +7,34 @@ import java.util.Scanner;
  *
  */
 public class AmazonUtil {
-	
-	public static int leeRespuesta() {
+
+	public static int validaRespuestaMenu(int minValido, int maxValido) {
 		int respuesta = -1;
 
 		Scanner sc = new Scanner(System.in);
-		String respuestaStr = sc.nextLine();
 
-		if (isRespuestaValida(respuestaStr)) {
-			respuesta = Integer.parseInt(respuestaStr);
+		validaEntero(sc);
+
+		respuesta = sc.nextInt();
+
+		// Validar rango de respuesta
+		while (respuesta < minValido || respuesta > maxValido) {
+			// Solicitar de nuevo la respuesta
+			System.out.println("No ingresaste una opción válida. \n Intenta de nuevo");
+
+			validaEntero(sc);
+
+			respuesta = sc.nextInt();
 		}
 
+		// System.out.println("Tu Respuesta fue: " + respuesta + "\n");
 		return respuesta;
 	}
 
-	private static boolean isRespuestaValida(String respuesta) {
-		return "0".equals(respuesta) || "1".equals(respuesta) || "2".equals(respuesta) || "3".equals(respuesta)
-				|| "4".equals(respuesta) || "5".equals(respuesta) || "6".equals(respuesta);
+	private static void validaEntero(Scanner sc) {
+		while (!sc.hasNextInt()) {
+			sc.next();
+			System.out.println("No ingresaste una opción válida. \n Intenta de nuevo");
+		}
 	}
 }
