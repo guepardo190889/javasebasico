@@ -9,9 +9,8 @@ public class Book extends Publication implements IVisualizable {
 	private boolean readed;
 	private int timeReaded;
 
-	public Book(String title, String editorial, String[] authors) {
-		setTitle(title);
-		setEditorial(editorial);
+	public Book(String title, Date edititionDate, String editorial, String[] authors) {
+		super(title, edititionDate, editorial);
 		setAuthors(authors);
 	}
 
@@ -27,8 +26,12 @@ public class Book extends Publication implements IVisualizable {
 		this.isbn = isbn;
 	}
 
-	public boolean isReaded() {
+	public boolean getIsReaded() {
 		return readed;
+	}
+
+	public String isReaded() {
+		return readed ? "Sí" : "No";
 	}
 
 	public void setReaded(boolean readed) {
@@ -71,10 +74,10 @@ public class Book extends Publication implements IVisualizable {
 
 	public static ArrayList<Book> makeBooksList() {
 		ArrayList<Book> books = new ArrayList<>();
-		books.add(new Book("Scrum. El arte de hacer el doble de trabajo en la mitad de tiempo", "Gandhi",
+		books.add(new Book("Scrum. El arte de hacer el doble de trabajo en la mitad de tiempo", new Date(), "Gandhi",
 				new String[] { "Jeff Sutherland" }));
-		books.add(new Book("Pequeño cerdo capitalista", "Gandhi", new String[] { "Sofía Macías" }));
-		books.add(new Book("Padre rico padre pobre", "Gandhi", new String[] { "Robert T. Kiyosaki" }));
+		books.add(new Book("Pequeño cerdo capitalista", new Date(), "Gandhi", new String[] { "Sofía Macías" }));
+		books.add(new Book("Padre rico padre pobre", new Date(), "Gandhi", new String[] { "Robert T. Kiyosaki" }));
 
 		return books;
 	}

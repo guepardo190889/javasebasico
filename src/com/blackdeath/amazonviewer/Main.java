@@ -6,6 +6,7 @@ import java.util.Date;
 
 import com.blackdeath.amazonviewer.model.Book;
 import com.blackdeath.amazonviewer.model.Chapter;
+import com.blackdeath.amazonviewer.model.Magazine;
 import com.blackdeath.amazonviewer.model.Movie;
 import com.blackdeath.amazonviewer.model.Serie;
 import com.blackdeath.amazonviewer.util.AmazonUtil;
@@ -16,6 +17,7 @@ public class Main {
 	private static ArrayList<Movie> movies = Movie.makeMoviesList();
 	private static ArrayList<Serie> series = Serie.makeSeriesList();
 	private static ArrayList<Book> books = Book.makeBooksList();
+	private static ArrayList<Magazine> magazines = Magazine.makeMagazineList();
 
 	public static void main(String[] args) {
 		showMenu();
@@ -92,7 +94,9 @@ public class Main {
 			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
+				exit = 0;
 				showMenu();
+				break;
 			} else if (respuesta > 0) {
 				Movie movieSelected = movies.get(respuesta - 1);
 				movieSelected.setViewed(true);
@@ -127,10 +131,11 @@ public class Main {
 			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
+				exit = 0;
 				showMenu();
+				break;
 			} else if (respuesta > 0) {
 				Serie serieSelected = series.get(respuesta - 1);
-
 				showChapters(serieSelected.getChapters());
 			}
 		} while (exit != 0);
@@ -148,13 +153,15 @@ public class Main {
 						(i + 1) + ". " + chapters.get(i).getTitle() + " - Viewed: " + chapters.get(i).isViewed());
 			}
 
-			System.out.println("0. Regresar al Menú");
+			System.out.println("0. Regresar a Series");
 			System.out.println();
 
 			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
+				exit = 0;
 				showSeries();
+				break;
 			} else if (respuesta > 0) {
 				Chapter chapterSelected = chapters.get(respuesta - 1);
 				chapterSelected.setViewed(true);
@@ -187,7 +194,9 @@ public class Main {
 			int respuesta = AmazonUtil.leeRespuesta();
 
 			if (0 == respuesta) {
+				exit = 0;
 				showMenu();
+				break;
 			} else if (respuesta > 0) {
 				Book bookSelected = books.get(respuesta - 1);
 				bookSelected.setReaded(true);
@@ -196,7 +205,7 @@ public class Main {
 				bookSelected.stopToSee(dateI, new Date());
 
 				System.out.println();
-				System.out.println("Le�ste: " + bookSelected);
+				System.out.println("Leíste: " + bookSelected);
 				System.out.println("Por: " + bookSelected.getTimeReaded() + " milisegundos");
 			}
 		} while (exit != 0);
@@ -208,6 +217,22 @@ public class Main {
 			System.out.println();
 			System.out.println(":: MAGAZINES ::");
 			System.out.println();
+
+			for (int i = 0; i < magazines.size(); i++) {
+				System.out.println(i + 1 + ". " + magazines.get(i).getTitle());
+			}
+
+			System.out.println("0. Regresar al Menu");
+			System.out.println();
+
+			int respuesta = AmazonUtil.leeRespuesta();
+
+			if (respuesta == 0) {
+				exit = 0;
+				showMenu();
+				break;
+			}
+
 		} while (exit != 0);
 	}
 
@@ -217,38 +242,61 @@ public class Main {
 		report.setTitle(":: VISTOS ::");
 		report.setExtension("txt");
 
-		String content = "";
+		StringBuilder contentReport = new StringBuilder();
+		contentReport.append(getDataContentReport());
 
-		for (Movie movie : movies) {
-			if (movie.getIsViewed()) {
-				content += movie.toString() + "\n";
-			}
-		}
-
-		report.setContent(content);
-
+		report.setContent(contentReport.toString());
 		report.makeReport();
+
+		System.out.println("Reporte Generado");
+		System.out.println();
 	}
 
 	public static void makeReport(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-h-m-s-S");
+		SimpleDateFormat dfNameDays = new SimpleDateFormat("E, W MMM Y");
 
 		Report report = new Report();
 		report.setNameFile("reporte" + sdf.format(date));
 		report.setTitle(":: VISTOS ::");
 		report.setExtension("txt");
 
-		String content = "";
+		StringBuilder contentReport = new StringBuilder();
+		contentReport.append("Date: ").append(dfNameDays.format(date)).append("\n\n\n");
+		contentReport.append(getDataContentReport());
+
+		report.setContent(contentReport.toString());
+		report.makeReport();
+
+		System.out.println("Reporte Generado");
+		System.out.println();
+	}
+
+	private static String getDataContentReport() {
+		StringBuilder sb = new StringBuilder();
 
 		for (Movie movie : movies) {
 			if (movie.getIsViewed()) {
-				content += movie.toString() + "\n";
+				sb.append(movie.toString()).append("\n");
 			}
 		}
 
-		report.setContent(content);
+		for (Serie serie : series) {
+			ArrayList<Chapter> chapters = serie.getChapters();
+			for (Chapter chapter : chapters) {
+				if (chapter.getIsViewed()) {
+					sb.append(chapter.toString()).append("\n");
+				}
+			}
+		}
 
-		report.makeReport();
+		for (Book book : books) {
+			if (book.getIsReaded()) {
+				sb.append(book.toString()).append("\n");
+			}
+		}
+
+		return sb.toString();
 	}
 
 }

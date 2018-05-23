@@ -13,6 +13,13 @@ public class Publication {
 	private String editorial;
 	private String[] authors;
 
+	public Publication(String title, Date edititionDate, String editorial) {
+		super();
+		this.title = title;
+		this.edititionDate = edititionDate;
+		this.editorial = editorial;
+	}
+
 	public String getTitle() {
 		return title;
 	}

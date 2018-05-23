@@ -61,7 +61,7 @@ public class Film {
 	}
 
 	public String isViewed() {
-		return viewed ? "Sí" : "No";
+		return viewed ? "SÃ­" : "No";
 	}
 
 	public boolean getIsViewed() {
